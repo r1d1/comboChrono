@@ -3,13 +3,11 @@ comboChrono
 
 *PC application for counting periods of time*
 
-===========
-
-**Version :** a.0
+**Version :** b.0
 
 ===========
 
-Install :
+Installing :
 
 make
 
@@ -20,6 +18,8 @@ Run :
 You need SFML 1.6+ installed for compiling.
 
 ===========
+
+28/12/2014 : **Beta released !**
 
 This application takes a schedule description file and count time according it. Each period can be delimited by audio tags, and be illustrated with a specific image.
 
