@@ -1,4 +1,4 @@
-VERSION= a.0 
+VERSION= b.0 
 BINARY= comboChrono
 SOURCE= ./src/
 BUILDDIR= ./obj/
@@ -21,7 +21,7 @@ Chrono.o: Chrono.cpp Chrono.h
 	g++ -c Chrono.cpp
 
 ChronoDuration.o: ChronoDuration.cpp ChronoDuration.h
-	g++ -c ChronoDuration.cpp # $(LIBS)
+	g++ -c ChronoDuration.cpp 
 
 # Because listing each file is long, painful, non maintenable, and stupid !
 

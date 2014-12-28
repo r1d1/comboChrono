@@ -26,10 +26,15 @@ class Chrono
 		
 		//datastructureToDefine schedule;
 		std::vector<ChronoDuration> schedule;
-		std::vector<ChronoDuration>::iterator state;
+		int state;
+		//std::vector<ChronoDuration>::iterator state;
 		//datastructureToDefine remainingSchedule;
 		// current state in the schedule
 
+		// For playing welcome sound :
+		sf::SoundBuffer buf;
+		sf::Sound snd;
+	
 	public :
 		Chrono();
 		~Chrono();
@@ -37,6 +42,7 @@ class Chrono
 		// Sound related methods (may be removed from Chrono and be in gui only) :
 		void loadSoundDB(const char *); // takes file name as argument
 
+		void runChrono(); // Handle Chrono states
 		// time related methods :
 		void loadSchedule(const char *); // takes file name as argument
 		void startChrono(); // start counting time from beginning of schedule
@@ -47,6 +53,8 @@ class Chrono
 
 		// Access data for GUI wrapping
 		int getElapsedTime(); // return time counted till then with pauses and resumes
+		//int getCumulativeTime(std::vector<ChronoDuration>::iterator step); // return cumulative time from beginning to schedule step
+		int getCumulativeTime(int step); // return cumulative time from beginning to schedule step
 		
 		void displaySchedule(); // pause/unpause counting time in keeping current state ; actually inverse value of "paused"
 //		void resumeChrono(); // re-start counting time from current state
