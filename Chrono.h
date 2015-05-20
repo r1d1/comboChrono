@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "ChronoDuration.h"
+#include <SFML/Graphics.hpp>
 
 class Chrono
 {
@@ -55,6 +56,8 @@ class Chrono
 		int getElapsedTime(); // return time counted till then with pauses and resumes
 		//int getCumulativeTime(std::vector<ChronoDuration>::iterator step); // return cumulative time from beginning to schedule step
 		int getCumulativeTime(int step); // return cumulative time from beginning to schedule step
+		
+		void displaySchedule(sf::RenderWindow & app, int x, int y); // pause/unpause counting time in keeping current state ; actually inverse value of "paused"
 		
 		void displaySchedule(); // pause/unpause counting time in keeping current state ; actually inverse value of "paused"
 //		void resumeChrono(); // re-start counting time from current state

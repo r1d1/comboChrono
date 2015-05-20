@@ -33,7 +33,7 @@ void Chrono::loadSchedule(const char * schedFile)
 	//std::ifstream filetoread;
 	//filetoread.open(schedFile);
 
-	std::cout << "Chrono: loadSchedule : " << std::endl;
+	std::cout << "Chrono: loadSchedule : " << schedFile << std::endl;
 	// build fake schedule for testing :
 	ChronoDuration time1(5,"mphg_ni.wav");
 	ChronoDuration time2(3,"ut_doublekill.wav");
@@ -130,6 +130,14 @@ int Chrono::getCumulativeTime(int step)
 		cumTime += schedule[it].getDuration();
 	}
 	return cumTime;
+}
+
+void Chrono::displaySchedule(sf::RenderWindow & app, int xpos=5, int ypos=5)
+{
+	for(int i=0 ; i < schedule.size() ; i++)
+	{
+		schedule[i].displayInfo(app, xpos, ypos+i*25);
+	}
 }
 
 // For debugging :

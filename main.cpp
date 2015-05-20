@@ -10,11 +10,12 @@
 
 #include "Chrono.h"
 
-#define APP_VERSION 0.1
+#define APP_VERSION 0.2
 
 #define DAYINSEC 86400
-#define WIN_H 75
-#define WIN_W 900
+//#define WIN_H 75
+#define WIN_H 300
+#define WIN_W 400
 
 //-------------------------------------------------------//
 // Entry point of application
@@ -46,12 +47,13 @@ int main(int argc, char** argv)
 	soundtest.SetBuffer(buftest);
 
 	std::vector<ChronoDuration> schedule;
-	int scheduleState =0;	
-	ChronoDuration time1(10, "None", "mphg_ni.wav");
-	ChronoDuration time2(7,"None", "ut_doublekill.wav");
-	ChronoDuration time3(9,"None", "sw_vaderyes.wav");
+	int scheduleState =0;
+	// Default program :
+	ChronoDuration time1(10, "None", "mphg_ni.wav", "1 - Push-ups");
+	ChronoDuration time2(7, "None", "ut_doublekill.wav", "2 - Crunch");
+	ChronoDuration time3(9, "None", "sw_vaderyes.wav", "3 - Power Jacks");
 	//ChronoDuration time3(9,"ut_godlike.wav", "sw_vaderyes.wav");
-	ChronoDuration time4(5, "None", "ut_unstoppable.wav");
+	ChronoDuration time4(5, "None", "ut_unstoppable.wav", "4 - Mountain Climbers");
 
 	schedule.push_back(time1);
 	schedule.push_back(time2);
@@ -78,10 +80,12 @@ int main(int argc, char** argv)
 		time_t t = time(0); // time now
 		struct tm * now = localtime( &t );
 		std::ostringstream datess;
-		datess << now->tm_hour / 10 << now->tm_hour % 10 << ":"
+		std::ostringstream eltimess;
+		datess << "Current time : " <<  now->tm_hour / 10 << now->tm_hour % 10 << ":"
 		<< now->tm_min / 10 << now->tm_min % 10 << ":"
-		<< now->tm_sec / 10 << now->tm_sec % 10 << "-"
-		<< now->tm_hour * 3600 + now->tm_min * 60 + now->tm_sec << "/" << 3600*23+60*59+59+1 << " - st : " << startTime << " pt : " << previousTime << " ct : " << currentTime << " et : " <<  elapsedTime;
+		<< now->tm_sec / 10 << now->tm_sec % 10 << std::endl;
+		//<< now->tm_hour * 3600 + now->tm_min * 60 + now->tm_sec << "/" << 3600*23+60*59+59+1 << " - st : " << startTime << " pt : " << previousTime << " ct : " << currentTime 
+		eltimess << "Elapsed time : " <<  elapsedTime;
 		//<< now->tm_hour * 3600 + now->tm_min * 60 + now->tm_sec << "/" << 3600*23+60*59+59+1 << " - " << krono.getElapsedTime();
 
 
@@ -151,8 +155,19 @@ int main(int argc, char** argv)
 		sf::String Texte;
 		Texte.SetText(datess.str());
 		Texte.SetSize(25);
-		Texte.SetPosition(WIN_W / 12, WIN_H / 2 - 12);
+//		Texte.SetPosition(WIN_W / 12, WIN_H / 2 - 12);
+		Texte.SetPosition(5, 5);
 		App.Draw(Texte);
+		
+		Texte.SetText(eltimess.str());
+		Texte.SetPosition(5, 5+30);
+		App.Draw(Texte);
+
+		// Exercices list :
+		for(int i=0 ; i < schedule.size() ; i++){ schedule[i].displayInfo(App, 5, 60+25*i, (( (i == scheduleState) && counting)? sf::Color::Red : sf::Color::Black)); }
+		//
+
+		// Menu :
 
 		// Finally, display the rendered frame on screen
 		App.Display();
