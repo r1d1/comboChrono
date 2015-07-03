@@ -1,7 +1,7 @@
 comboChrono
 ===========
 
-*PC application for counting periods of time*
+*PC SFML based application for counting periods of time*
 
 **Version :** b.0
 
